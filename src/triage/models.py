@@ -121,9 +121,14 @@ class Listing:
     available_from: date
     available_to: date
     status: str
+    host_id: str = ""
+    title: str = ""
+    instant_book: bool = False
+    rating: float | None = None
 
     @classmethod
     def from_row(cls, row: dict[str, str]) -> Listing:
+        rating = row.get("rating", "").strip()
         return cls(
             listing_id=row["listing_id"],
             neighborhood=row["neighborhood"],
@@ -133,6 +138,10 @@ class Listing:
             available_from=date.fromisoformat(row["available_from"]),
             available_to=date.fromisoformat(row["available_to"]),
             status=row["status"],
+            host_id=row.get("host_id", ""),
+            title=row.get("title", ""),
+            instant_book=row.get("instant_book", "").strip().lower() == "true",
+            rating=float(rating) if rating else None,
         )
 
 
