@@ -27,7 +27,8 @@ So on a safety ticket the only permitted call is `handoff_to_safety_agent`.
 listing search, which only delays the hand-off and hints at an offer the agent
 has no authority to make.
 
-The full ground rules are in [`docs/constitution.md`](docs/constitution.md).
+The full ground rules are in [`.specify/memory/constitution.md`](.specify/memory/constitution.md),
+and the specification in [`specs/001-ticket-triage/spec.md`](specs/001-ticket-triage/spec.md).
 
 ## What the data showed
 
@@ -92,7 +93,14 @@ result.failures  # ('EUR 160.00 over ceiling of EUR 132.00',)
 
 ## Layout
 
+This is a [GitHub Spec Kit](https://github.com/github/spec-kit) project. The
+rules live as a constitution and a spec; the code implements them.
+
 ```
+.specify/memory/
+  constitution.md    Ground rules every agent follows
+specs/001-ticket-triage/
+  spec.md            Requirements, acceptance scenarios, success criteria
 src/triage/
   models.py   Ticket, Listing, Decision, TicketType, SafetyCondition, Tool
   safety.py   The five safety conditions, read from the guest's own words
@@ -100,7 +108,6 @@ src/triage/
   policy.py   AirCover rules — tool permissions, comparability, refund caps
   report.py   Command-line summary of all 60 tickets
 docs/
-  constitution.md    Ground rules every agent follows
   aircover-policy.md The Policy and Payments ruling this implements
 data/
   airbnb_lisbon_stranded_guest_tickets_2026-11-16.csv
@@ -128,3 +135,11 @@ carrying no weight either way.
 Sorting and the policy rules are implemented and tested. Still to build: the
 three agents themselves, the listing search against the 450 open Lisbon
 listings, and the hand-off payload sent to Trust and Safety.
+
+Next in the Spec Kit workflow, from Claude Code in this repo:
+
+```
+/speckit-plan      # tech stack and approach for the agents
+/speckit-tasks     # break the plan into steps
+/speckit-implement # build them
+```
